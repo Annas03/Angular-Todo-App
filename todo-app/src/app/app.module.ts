@@ -9,6 +9,8 @@ import { FooterComponent } from './component/footer/footer.component';
 import { TasksComponent } from './component/tasks/tasks.component';
 import { FormsModule  } from '@angular/forms';
 import { ErrorComponent } from './component/error/error.component';
+import { TasksService } from './services/tasks.service';
+import {HttpClientModule} from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -21,9 +23,9 @@ import { ErrorComponent } from './component/error/error.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule, FormsModule 
+    AppRoutingModule, FormsModule,  HttpClientModule
   ],
-  providers: [],
+  providers: [TasksService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

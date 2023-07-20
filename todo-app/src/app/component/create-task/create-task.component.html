@@ -8,4 +8,4 @@
     <input class=" ml-10 mb-6" type="checkbox" name="reminder" [(ngModel)]="completed" />
 </form>
 <button class="rounded-lg w-full bg-black text-white font-semibold py-2"
-    (click)="save({id:1,content: content, date:day, isDone:completed})">Save task</button>
+    (click)="save({id:1,todo: content, completed:completed})">Save task</button>

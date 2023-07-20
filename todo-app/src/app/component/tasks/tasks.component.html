@@ -1,8 +1,8 @@
 <div>
-    <ul *ngFor="let task of taskArray1" [ngClass]="task.isDone ? 'border-l-4':''"
+    <ul *ngFor="let task of taskArray1" [ngClass]="task.completed ? 'border-l-4':''"
         class="mt-4 border-green-500 bg-gray-100 flex rounded-lg">
         <div class="flex-wrap p-3 w-full">
-            <p class="font-semibold text-lg">{{task.content}}</p>
+            <p class="font-semibold text-lg">{{task.todo}}</p>
             <p>{{task.date}}</p>
         </div>
         <button class="mr-2" (click)="delete(task.id)">
