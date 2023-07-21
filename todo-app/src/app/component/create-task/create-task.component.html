@@ -1,11 +1,8 @@
 <form action="/">
-    <label for="add-task">Task</label>
-    <input class="border border-black p-2 w-full mb-4" placeholder="Add Task" [(ngModel)]="content" name="add-task" />
-    <label for="day-time">Day And Time</label>
-    <input class="border border-black p-2 w-full mb-4" name="day-time" [(ngModel)]="day"
-        placeholder="Add Day and Time" />
-    <label for="reminder" class="ml-3">Completed</label>
-    <input class=" ml-10 mb-6" type="checkbox" name="reminder" [(ngModel)]="completed" />
+    <label for="add-task" class="text-lg font-semibold">Task</label>
+    <input *ngIf="!editTask" class="border border-black p-2 w-full mb-4 rounded mt-2" placeholder="Add Task"  [(ngModel)]="content" name="add-task" />
+    <input *ngIf="editTask" class="border border-black p-2 w-full mb-4 rounded mt-2" value={{editTask.todo}} placeholder="edit Task"  [formControl]="todoTask" name="add-task" />
 </form>
-<button class="rounded-lg w-full bg-black text-white font-semibold py-2"
-    (click)="save({id:1,todo: content, completed:completed})">Save task</button>
+<button *ngIf="!editTask" class="rounded-lg w-full bg-black text-white font-semibold py-2"
+    (click)="save({id:1,todo: content, completed:false})">Save task</button>
+<button *ngIf="editTask" class="rounded-lg w-full bg-black text-white font-semibold py-2">Edit task</button>

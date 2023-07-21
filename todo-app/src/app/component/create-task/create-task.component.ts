@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { task } from 'src/app/models/task';
 
 @Component({
@@ -8,15 +9,17 @@ import { task } from 'src/app/models/task';
 })
 export class CreateTaskComponent {
   @Output() saveTask1 = new EventEmitter();
+  @Input() editTask : task | undefined;
+  todoTask: FormControl = new FormControl('');
+
+  ngOnChanges() {
+    console.log(this.editTask)
+  }
 
   content: string = '';
-  day: string = '';
-  completed: boolean = false;
 
   save(value: task) {
     this.content = ''
-    this.day = ''
-    this.completed = false
     this.saveTask1.emit(value)
   }
 }

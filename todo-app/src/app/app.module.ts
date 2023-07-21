@@ -7,10 +7,11 @@ import { HeaderComponent } from './component/header/header.component';
 import { CreateTaskComponent } from './component/create-task/create-task.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { TasksComponent } from './component/tasks/tasks.component';
-import { FormsModule  } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorComponent } from './component/error/error.component';
 import { TasksService } from './services/tasks.service';
-import {HttpClientModule} from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -22,8 +23,7 @@ import {HttpClientModule} from '@angular/common/http'
     ErrorComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule, FormsModule,  HttpClientModule
+    BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule
   ],
   providers: [TasksService],
   bootstrap: [AppComponent]

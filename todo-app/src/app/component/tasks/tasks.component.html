@@ -5,8 +5,14 @@
             <p class="font-semibold text-lg">{{task.todo}}</p>
             <p>{{task.date}}</p>
         </div>
-        <button class="mr-2" (click)="delete(task.id)">
-            <img src="../../../assets/edit.png" class="w-5 h-5">
+        <button *ngIf="task.completed" class="mr-1" (click)="toggleCompletion(task.id)">
+            <img src="../../../assets/complete.png" class="w-6 h-6">
+        </button>
+        <button *ngIf="!task.completed" class="mr-1" (click)="toggleCompletion(task.id)">
+            <img src="../../../assets/unfinished.png" class="w-6 h-6">
+        </button>
+        <button class="mr-1" (click)="edit(task)">
+            <img src="../../../assets/edit.png" class="w-6 h-6">
         </button>
         <button class="mr-2" (click)="delete(task.id)">
             <img src="../../../assets/delete.png" class="w-5 h-5">

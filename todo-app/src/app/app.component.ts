@@ -10,6 +10,7 @@ import { TasksService } from './services/tasks.service';
 export class AppComponent {
   title = 'todo-app';
   inputValid: boolean | undefined = true;
+  editTask: task | undefined;
 
   taskArray: task[] = [];
 
@@ -28,8 +29,9 @@ export class AppComponent {
   }
 
   saveTaskInApp(value: any) {
-    if (value.content !== '' && value.date !== '') {
-      this.taskArray = this.service.addTask(value)
+    if (value.todo !== '') {
+      // this.taskArray = this.service.addTask(value)
+      this.taskArray.push({ ...value, id: this.taskArray.length + 1 })
       this.inputValid = true
     }
     else {
@@ -37,8 +39,20 @@ export class AppComponent {
     }
   }
 
+  editTaskInApp(value: any){
+    this.editTask = value
+  }
+
   deleteTaskInApp(value: any) {
     this.taskArray = this.taskArray.filter((task: any) => task.id !== value)
+  }
+
+  toggleCompletionInApp(value: any){
+    for(let i=0; i<this.taskArray.length; i++){
+      if(this.taskArray[i].id === value){
+        this.taskArray[i].completed = !this.taskArray[i].completed
+      }
+    }
   }
 
 }
