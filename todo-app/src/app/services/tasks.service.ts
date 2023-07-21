@@ -11,23 +11,30 @@ export class TasksService {
 
   constructor(private http: HttpClient) { }
 
-  private setTask() {
-    this.http.get('https://dummyjson.com/todos').subscribe({
-      next: (res: any) => {
-        this.taskArray = res.todos
-      }
-    })
-  }
+  // private setTask() {
+  //   return this.http.get('https://dummyjson.com/todos')
+  //   .subscribe({
+  //     next: (res: any) => {
+  //       this.taskArray = res.todos
+  //     }
+  //   })
+  // }
 
   getTasks() {
-    if (this.taskArray.length == 0){
-      this.setTask()
-    }
-    return this.taskArray
+    // if (this.taskArray.length == 0){
+    //   this.setTask().subscribe({
+    //     next: (data: any) => {
+    //       this.taskArray = data.todos
+    //     }
+    //   })
+    // }
+    // return this.taskArray
+    return this.http.get('https://dummyjson.com/todos')
   }
 
-  addTask(value: any) {
+  addTask(value: any) : task[] {
     this.taskArray.push({ ...value, id: this.taskArray.length + 1 })
+    return this.taskArray
   }
 
   deleteTask(value: any) {
