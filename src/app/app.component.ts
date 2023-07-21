@@ -20,12 +20,19 @@ export class AppComponent {
     console.log(val)
   }
 
-  ngOnInit() {     
-    this.service.getTasks().subscribe({
-      next: (data: any) => {
-        this.taskArray = data.todos
-      }
-    })
+  ngOnInit() {
+    // this.service.getTasks().subscribe({
+    //   next: (data: any) => {
+    //     this.taskArray = data.todos
+    //   }
+    // })
+    this.getData()
+  }
+
+  async getData() {
+    const task = await this.service.getTasks()
+    this.taskArray = task
+    console.log(this.taskArray)
   }
 
   saveTaskInApp(value: any) {
@@ -39,21 +46,22 @@ export class AppComponent {
     }
   }
 
-  editTaskInApp(value: any){
+  editTaskInApp(value: any) {
     this.editTask = value
   }
 
-  editTaskTodoInApp(value: any){
-    if(value.todo.value !== ''){
-      for(let i=0; i<this.taskArray.length; i++){
-        if(this.taskArray[i].id === value.id){
-          this.taskArray[i].todo = value.todo.value
+  editTaskTodoInApp(value: any) {
+    if (value.todo !== '') {
+      for (let i = 0; i < this.taskArray.length; i++) {
+        if (this.taskArray[i].id === value.id) {
+          this.taskArray[i].todo = value.todo
+          this.taskArray[i].completed = value.completed
         }
       }
       this.editTask = undefined
       this.inputValid = true;
     }
-    else{
+    else {
       this.inputValid = false;
     }
   }
@@ -64,9 +72,9 @@ export class AppComponent {
     this.editTask = undefined
   }
 
-  toggleCompletionInApp(value: any){
-    for(let i=0; i<this.taskArray.length; i++){
-      if(this.taskArray[i].id === value){
+  toggleCompletionInApp(value: any) {
+    for (let i = 0; i < this.taskArray.length; i++) {
+      if (this.taskArray[i].id === value) {
         this.taskArray[i].completed = !this.taskArray[i].completed
       }
     }

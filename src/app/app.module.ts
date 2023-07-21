@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorComponent } from './component/error/error.component';
 import { TasksService } from './services/tasks.service';
 import { HttpClientModule } from '@angular/common/http';
+import { SuccessComponent } from './component/success/success.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
     CreateTaskComponent,
     FooterComponent,
     TasksComponent,
-    ErrorComponent
+    ErrorComponent,
+    SuccessComponent
   ],
   imports: [
     BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule

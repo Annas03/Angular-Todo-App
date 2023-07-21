@@ -12,29 +12,30 @@ export class CreateTaskComponent {
   @Input() editTask: task | undefined;
   @Output() taskEdit = new EventEmitter();
   taskForm = new FormGroup({
-    todoTask: new FormControl(),
-    todoCompleted: new FormControl()
+    todo: new FormControl(),
+    completed: new FormControl()
   })
   // todoTask: FormControl = new FormControl('');
 
   content: string = '';
 
-  ngOnChanges() {  
+  ngOnChanges() {
     if (this.editTask) {
-      this.taskForm.controls.todoTask.setValue(this.editTask?.todo)
+      this.taskForm.patchValue(this.editTask)
     }
   }
 
   save(value: task) {
-    this.taskForm.controls.todoTask.setValue('')
     this.saveTask1.emit(value)
+    this.taskForm.patchValue({ todo: '', completed: false })
     this.editTask = undefined
   }
 
   edit(value: any) {
-    this.taskEdit.emit({...this.editTask, todo: value})
-    this.taskForm.controls.todoTask.setValue('')
-    // this.editTask = undefined
+    console.log(value)
+    this.taskEdit.emit({ ...this.editTask, todo: value[0], completed: value[1] })
+    this.taskForm.patchValue({ todo: '', completed: this.editTask?.completed })
+    // this.editTask = undefined  
   }
 }
 

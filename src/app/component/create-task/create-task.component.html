@@ -1,0 +1,14 @@
+<form action="/" [formGroup]="taskForm" class="mt-4">
+    <label for="add-task" class="text-lg font-semibold">Task</label>
+    <input *ngIf="!editTask" class="border border-black p-2 w-full mb-4 rounded mt-2" placeholder="Add Task"
+        formControlName="todo" name="add-task" />
+    <input *ngIf="editTask" class="border border-black p-2 w-full mb-2 rounded mt-2" value={{editTask.todo}}
+        placeholder="edit Task" formControlName="todo" name="add-task" />
+    <label for="add-task" *ngIf="editTask" class="text-lg font-semibold">Completed</label>
+    <input *ngIf="editTask" type="checkbox" [value]="editTask.completed" class="ml-2 mb-4"
+        formControlName="completed">
+</form>
+<button *ngIf="!editTask" class="rounded-lg w-full bg-black text-white font-semibold py-2"
+    (click)="save({id:1,todo: taskForm.value.todo, completed:false})">Save task</button>
+<button *ngIf="editTask" class="rounded-lg w-full bg-black text-white font-semibold py-2"
+    (click)="edit([taskForm.value.todo, taskForm.value.completed])">Edit task</button>
