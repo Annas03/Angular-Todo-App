@@ -11,24 +11,24 @@ export class TasksService {
 
   constructor(private http: HttpClient) { }
 
-  private async setTask() {
-    await this.http.get('https://dummyjson.com/todos')
-      .subscribe({
-        next: (res: any) => {
-          console.log("in await")
-          this.taskArray = res.todos
-          return this.taskArray
-        }
-      })
-  }
+  // private async setTask() {
+  //   await this.http.get('https://dummyjson.com/todos')
+  //     .subscribe({
+  //       next: (res: any) => {
+  //         console.log("in await")
+  //         this.taskArray = res.todos
+  //         return this.taskArray
+  //       }
+  //     })
+  // }
 
-  async getTasks() {
-    if (this.taskArray.length == 0) {
-      await this.setTask()
-      return this.taskArray
-    }
-    return this.taskArray
-    // return this.http.get('https://dummyjson.com/todos')
+  getTasks() {
+    // if (this.taskArray.length == 0) {
+    //   await this.setTask()
+    //   return this.taskArray
+    // }
+    // return this.taskArray
+    return this.http.get('https://dummyjson.com/todos')
   }
 
   addTask(value: any): task[] {

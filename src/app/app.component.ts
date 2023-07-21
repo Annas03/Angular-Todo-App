@@ -21,19 +21,19 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    // this.service.getTasks().subscribe({
-    //   next: (data: any) => {
-    //     this.taskArray = data.todos
-    //   }
-    // })
-    this.getData()
+    this.service.getTasks().subscribe({
+      next: (data: any) => {
+        this.taskArray = data.todos
+      }
+    })
+    // this.getData()
   }
 
-  async getData() {
-    const task = await this.service.getTasks()
-    this.taskArray = task
-    console.log(this.taskArray)
-  }
+  // async getData() {
+  //   const task = await this.service.getTasks()
+  //   this.taskArray = task
+  //   console.log(this.taskArray)
+  // }
 
   saveTaskInApp(value: any) {
     if (value.todo !== '') {
