@@ -1,8 +1,8 @@
-<form action="/">
+<form action="/" [formGroup]="taskForm" class="mt-4">
     <label for="add-task" class="text-lg font-semibold">Task</label>
-    <input *ngIf="!editTask" class="border border-black p-2 w-full mb-4 rounded mt-2" placeholder="Add Task"  [(ngModel)]="content" name="add-task" />
-    <input *ngIf="editTask" class="border border-black p-2 w-full mb-4 rounded mt-2" value={{editTask.todo}} placeholder="edit Task"  [formControl]="todoTask" name="add-task" />
+    <input *ngIf="!editTask" class="border border-black p-2 w-full mb-4 rounded mt-2" placeholder="Add Task" formControlName="todoTask" name="add-task" />
+    <input *ngIf="editTask" class="border border-black p-2 w-full mb-4 rounded mt-2" value={{editTask.todo}} placeholder="edit Task" formControlName="todoTask" name="add-task" />
 </form>
 <button *ngIf="!editTask" class="rounded-lg w-full bg-black text-white font-semibold py-2"
-    (click)="save({id:1,todo: content, completed:false})">Save task</button>
-<button *ngIf="editTask" class="rounded-lg w-full bg-black text-white font-semibold py-2">Edit task</button>
+    (click)="save({id:1,todo: taskForm.controls.todoTask.value, completed:false})">Save task</button>
+<button *ngIf="editTask" class="rounded-lg w-full bg-black text-white font-semibold py-2" (click)="edit(taskForm.controls.todoTask)">Edit task</button>

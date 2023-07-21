@@ -1,6 +1,6 @@
 <div class="max-w-xl mx-auto mt-10">
   <app-header [arg]="title" (clickCross)="fun($event)"></app-header>
-  <app-create-task (saveTask1)="saveTaskInApp($event)" [editTask]="editTask"></app-create-task>
+  <app-create-task (saveTask1)="saveTaskInApp($event)" [editTask]="editTask" (taskEdit)="editTaskTodoInApp($event)"></app-create-task>
   <app-tasks [taskArray1]="taskArray" (deleteTask)="deleteTaskInApp($event)" (editTask)="editTaskInApp($event)" (toggleCompletionOfTask)="toggleCompletionInApp($event)"></app-tasks>
   <app-footer></app-footer>
 </div>

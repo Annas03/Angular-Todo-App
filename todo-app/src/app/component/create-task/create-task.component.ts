@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { task } from 'src/app/models/task';
 
 @Component({
@@ -9,17 +9,32 @@ import { task } from 'src/app/models/task';
 })
 export class CreateTaskComponent {
   @Output() saveTask1 = new EventEmitter();
-  @Input() editTask : task | undefined;
-  todoTask: FormControl = new FormControl('');
-
-  ngOnChanges() {
-    console.log(this.editTask)
-  }
+  @Input() editTask: task | undefined;
+  @Output() taskEdit = new EventEmitter();
+  taskForm = new FormGroup({
+    todoTask: new FormControl(),
+    todoCompleted: new FormControl()
+  })
+  // todoTask: FormControl = new FormControl('');
 
   content: string = '';
 
+  ngOnChanges() {  
+    if (this.editTask) {
+      this.taskForm.controls.todoTask.setValue(this.editTask?.todo)
+    }
+  }
+
   save(value: task) {
-    this.content = ''
+    this.taskForm.controls.todoTask.setValue('')
     this.saveTask1.emit(value)
+    this.editTask = undefined
+  }
+
+  edit(value: any) {
+    this.taskEdit.emit({...this.editTask, todo: value})
+    this.taskForm.controls.todoTask.setValue('')
+    // this.editTask = undefined
   }
 }
+

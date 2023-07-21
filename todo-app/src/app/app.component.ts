@@ -43,8 +43,25 @@ export class AppComponent {
     this.editTask = value
   }
 
+  editTaskTodoInApp(value: any){
+    if(value.todo.value !== ''){
+      for(let i=0; i<this.taskArray.length; i++){
+        if(this.taskArray[i].id === value.id){
+          this.taskArray[i].todo = value.todo.value
+        }
+      }
+      this.editTask = undefined
+      this.inputValid = true;
+    }
+    else{
+      this.inputValid = false;
+    }
+  }
+
   deleteTaskInApp(value: any) {
     this.taskArray = this.taskArray.filter((task: any) => task.id !== value)
+    this.inputValid = true;
+    this.editTask = undefined
   }
 
   toggleCompletionInApp(value: any){
