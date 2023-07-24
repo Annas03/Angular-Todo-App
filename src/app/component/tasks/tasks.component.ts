@@ -8,15 +8,27 @@ import { TasksService } from 'src/app/services/tasks.service';
 })
 export class TasksComponent {
   taskArray1: any;
+  @Input() taskType?: string;
   @Output() deleteTask = new EventEmitter();
   @Output() editTask = new EventEmitter();
   @Output() toggleCompletionOfTask = new EventEmitter();
 
-  constructor(private service: TasksService) {
-    this.service.bSubject.subscribe((res) => {
-      console.log(res)
-      this.taskArray1 = res
-    })
+  constructor(private service: TasksService) {}
+
+  ngOnChanges(){
+    if(this.taskType){
+      console.log(this.taskType)
+      if(this.taskType === 'completed' ){
+        this.service.completeTaskSubject.subscribe((res) => {
+          this.taskArray1 = res
+        })
+      }
+      else{
+        this.service.pendingTaskSubject.subscribe((res) => {
+          this.taskArray1 = res
+        })
+      }
+    }
   }
 
   delete(value: any){

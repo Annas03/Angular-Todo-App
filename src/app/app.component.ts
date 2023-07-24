@@ -26,7 +26,6 @@ export class AppComponent {
 
   async getData() {
     (await this.service.getTasks()).subscribe((res) => {
-      console.log(res)
       this.taskArray = res
     })
   }
@@ -34,7 +33,7 @@ export class AppComponent {
   saveTaskInApp(value: any) {
     console.log(value.todo)
     if (value.todo !== null && value.todo !== '') {
-      this.taskArray = this.service.addTask(value)
+      this.service.addTask(value)
       this.inputValid = true
     }
     else {
@@ -48,7 +47,7 @@ export class AppComponent {
 
   editTaskTodoInApp(value: any) {
     if (value.todo !== '') {
-      this.taskArray = this.service.editTask(value);
+      this.service.editTask(value);
       this.editTask = undefined
       this.inputValid = true;
     }
@@ -58,13 +57,13 @@ export class AppComponent {
   }
 
   deleteTaskInApp(value: any) {
-    this.taskArray = this.service.deleteTask(value)
+    this.service.deleteTask(value)
     this.inputValid = true;
     this.editTask = undefined
   }
 
   toggleCompletionInApp(value: any) {
-    this.taskArray = this.service.toggleCompletion(value)
+    this.service.toggleCompletion(value)
   }
 
 }

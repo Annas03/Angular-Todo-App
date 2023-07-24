@@ -1,7 +1,8 @@
 <div class="max-w-xl mx-auto mt-10">
   <app-header [arg]="title" (clickCross)="fun($event)"></app-header>
   <app-create-task (saveTask1)="saveTaskInApp($event)" [editTask]="editTask" (taskEdit)="editTaskTodoInApp($event)"></app-create-task>
-  <app-tasks (deleteTask)="deleteTaskInApp($event)" (editTask)="editTaskInApp($event)" (toggleCompletionOfTask)="toggleCompletionInApp($event)"></app-tasks>
+  <app-tasks [taskType]="'completed'" (deleteTask)="deleteTaskInApp($event)" (editTask)="editTaskInApp($event)" (toggleCompletionOfTask)="toggleCompletionInApp($event)"></app-tasks>
+  <app-tasks [taskType]="'pending'" (deleteTask)="deleteTaskInApp($event)" (editTask)="editTaskInApp($event)" (toggleCompletionOfTask)="toggleCompletionInApp($event)"></app-tasks>
   <app-footer></app-footer>
 </div>
 <app-error *ngIf="!inputValid" class="absolute top-20"></app-error>

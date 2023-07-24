@@ -5,10 +5,10 @@
             <p class="font-semibold text-lg">{{task.todo}}</p>
             <p>{{task.date}}</p>
         </div>
-        <button *ngIf="task.completed" class="mr-1" (click)="toggleCompletion(task.id)">
+        <button *ngIf="task.completed" class="mr-1" (click)="toggleCompletion({id: task.id, todo:task.todo, completed: task.completed})">
             <img src="../../../assets/complete.png" class="w-6 h-6">
         </button>
-        <button *ngIf="!task.completed" class="mr-1" (click)="toggleCompletion(task.id)">
+        <button *ngIf="!task.completed" class="mr-1" (click)="toggleCompletion({id: task.id, todo:task.todo, completed: task.completed})">
             <img src="../../../assets/unfinished.png" class="w-6 h-6">
         </button>
         <button class="mr-1" (click)="edit(task)">

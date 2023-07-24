@@ -9,50 +9,78 @@ import { BehaviorSubject, Observable, catchError, map } from 'rxjs';
 export class TasksService {
 
   public taskArray: task[] = [];
+  public completeTasks: task[] = [];
+  public pendingTasks: task[] = [];
+
   bSubject = new BehaviorSubject<task []>(this.taskArray);
+  completeTaskSubject = new BehaviorSubject<task []>([])
+  pendingTaskSubject = new BehaviorSubject<task []>([])
+
 
   constructor(private http: HttpClient) { }
 
   public callTasks(): Observable<any> {
     return this.http.get('https://dummyjson.com/todos').pipe(map((res: any) => {
-      console.log(res.todos);
       this.taskArray = res.todos
-      this.bSubject.next(this.taskArray)
+      this.bSubject.next(res.todos)
+      this.sortArrays();
       return this.taskArray;
     }))
+  }
+
+  public sortArrays(){
+    for(let i=0; i<this.taskArray.length; i++){
+      if(this.taskArray[i].completed){
+        this.completeTasks.push(this.taskArray[i])
+      }
+      else{
+        this.pendingTasks.push(this.taskArray[i])
+      }
+    }
+    console.log(this.completeTasks)
+    this.completeTaskSubject.next(this.completeTasks)
+    console.log(this.pendingTasks)
+    this.pendingTaskSubject.next(this.pendingTasks)
   }
 
   async getTasks() {
     return this.callTasks()
   }
 
-  editTask(value: any): task[] {
+  editTask(value: any) {
     for (let i = 0; i < this.taskArray.length; i++) {
       if (this.taskArray[i].id === value.id) {
         this.taskArray[i].todo = value.todo
         this.taskArray[i].completed = value.completed
       }
     }
-    return this.taskArray
+    this.bSubject.next(this.taskArray);
   }
 
-  addTask(value: any): task[] {
+  addTask(value: any) {
     this.taskArray.push({ ...value, id: this.taskArray.length + 1 })
-    return this.taskArray
+    this.bSubject.next(this.taskArray);
   }
 
-  deleteTask(value: any) : task[] {
+  deleteTask(value: any) {
     this.taskArray = this.taskArray.filter((task: any) => task.id !== value)
-    return this.taskArray
+    this.bSubject.next(this.taskArray);
   }
 
-  toggleCompletion(value: any) : task[]{
-    for (let i = 0; i < this.taskArray.length; i++) {
-      if (this.taskArray[i].id === value) {
-        this.taskArray[i].completed = !this.taskArray[i].completed
-      }
+  toggleCompletion(value: any){
+    if(value.completed){
+      value = {...value, completed: false}
+      this.completeTasks = this.completeTasks.filter((task) => task.id !== value.id)
+      this.pendingTasks = [value, ...this.pendingTasks]
     }
-    return this.taskArray
+    else{
+      value = {...value, completed: true}
+      this.pendingTasks = this.pendingTasks.filter((task) => task.id !== value.id)
+      this.completeTasks = [value, ...this.completeTasks]
+    }
+    this.completeTaskSubject.next(this.completeTasks)
+    this.pendingTaskSubject.next(this.pendingTasks)
+
   }
 
 }
