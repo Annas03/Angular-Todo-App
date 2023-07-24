@@ -14,31 +14,27 @@ export class AppComponent {
 
   taskArray: task[] = [];
 
-  constructor(private service: TasksService) { }
+  constructor(private service: TasksService) {}
 
   fun(val: any) {
     console.log(val)
   }
 
   ngOnInit() {
-    this.service.getTasks().subscribe({
-      next: (data: any) => {
-        this.taskArray = data.todos
-      }
-    })
-    // this.getData()
+    this.getData()
   }
 
-  // async getData() {
-  //   const task = await this.service.getTasks()
-  //   this.taskArray = task
-  //   console.log(this.taskArray)
-  // }
+  async getData() {
+    (await this.service.getTasks()).subscribe((res) => {
+      console.log(res)
+      this.taskArray = res
+    })
+  }
 
   saveTaskInApp(value: any) {
-    if (value.todo !== '') {
-      // this.taskArray = this.service.addTask(value)
-      this.taskArray.push({ ...value, id: this.taskArray.length + 1 })
+    console.log(value.todo)
+    if (value.todo !== null && value.todo !== '') {
+      this.taskArray = this.service.addTask(value)
       this.inputValid = true
     }
     else {
@@ -52,12 +48,7 @@ export class AppComponent {
 
   editTaskTodoInApp(value: any) {
     if (value.todo !== '') {
-      for (let i = 0; i < this.taskArray.length; i++) {
-        if (this.taskArray[i].id === value.id) {
-          this.taskArray[i].todo = value.todo
-          this.taskArray[i].completed = value.completed
-        }
-      }
+      this.taskArray = this.service.editTask(value);
       this.editTask = undefined
       this.inputValid = true;
     }
@@ -67,17 +58,13 @@ export class AppComponent {
   }
 
   deleteTaskInApp(value: any) {
-    this.taskArray = this.taskArray.filter((task: any) => task.id !== value)
+    this.taskArray = this.service.deleteTask(value)
     this.inputValid = true;
     this.editTask = undefined
   }
 
   toggleCompletionInApp(value: any) {
-    for (let i = 0; i < this.taskArray.length; i++) {
-      if (this.taskArray[i].id === value) {
-        this.taskArray[i].completed = !this.taskArray[i].completed
-      }
-    }
+    this.taskArray = this.service.toggleCompletion(value)
   }
 
 }

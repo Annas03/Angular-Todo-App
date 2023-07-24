@@ -15,7 +15,6 @@ export class CreateTaskComponent {
     todo: new FormControl(),
     completed: new FormControl()
   })
-  // todoTask: FormControl = new FormControl('');
 
   content: string = '';
 

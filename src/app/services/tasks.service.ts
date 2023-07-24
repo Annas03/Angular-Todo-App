@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { task } from '../models/task';
+import { BehaviorSubject, Observable, catchError, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,27 +9,31 @@ import { task } from '../models/task';
 export class TasksService {
 
   public taskArray: task[] = [];
+  bSubject = new BehaviorSubject<task []>(this.taskArray);
 
   constructor(private http: HttpClient) { }
 
-  // private async setTask() {
-  //   await this.http.get('https://dummyjson.com/todos')
-  //     .subscribe({
-  //       next: (res: any) => {
-  //         console.log("in await")
-  //         this.taskArray = res.todos
-  //         return this.taskArray
-  //       }
-  //     })
-  // }
+  public callTasks(): Observable<any> {
+    return this.http.get('https://dummyjson.com/todos').pipe(map((res: any) => {
+      console.log(res.todos);
+      this.taskArray = res.todos
+      this.bSubject.next(this.taskArray)
+      return this.taskArray;
+    }))
+  }
 
-  getTasks() {
-    // if (this.taskArray.length == 0) {
-    //   await this.setTask()
-    //   return this.taskArray
-    // }
-    // return this.taskArray
-    return this.http.get('https://dummyjson.com/todos')
+  async getTasks() {
+    return this.callTasks()
+  }
+
+  editTask(value: any): task[] {
+    for (let i = 0; i < this.taskArray.length; i++) {
+      if (this.taskArray[i].id === value.id) {
+        this.taskArray[i].todo = value.todo
+        this.taskArray[i].completed = value.completed
+      }
+    }
+    return this.taskArray
   }
 
   addTask(value: any): task[] {
@@ -36,8 +41,18 @@ export class TasksService {
     return this.taskArray
   }
 
-  deleteTask(value: any) {
+  deleteTask(value: any) : task[] {
     this.taskArray = this.taskArray.filter((task: any) => task.id !== value)
+    return this.taskArray
+  }
+
+  toggleCompletion(value: any) : task[]{
+    for (let i = 0; i < this.taskArray.length; i++) {
+      if (this.taskArray[i].id === value) {
+        this.taskArray[i].completed = !this.taskArray[i].completed
+      }
+    }
+    return this.taskArray
   }
 
 }
