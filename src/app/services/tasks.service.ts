@@ -58,8 +58,9 @@ export class TasksService {
   }
 
   addTask(value: any) {
-    this.taskArray.push({ ...value, id: this.taskArray.length + 1 })
-    this.bSubject.next(this.taskArray);
+    this.pendingTasks = [{ ...value, id: this.taskArray.length + 1 }, ...this.pendingTasks]
+    // this.bSubject.next(this.taskArray);
+    this.pendingTaskSubject.next(this.pendingTasks)
   }
 
   deleteTask(value: any) {
