@@ -46,6 +46,7 @@ export class AppComponent {
   }
 
   editTaskTodoInApp(value: any) {
+    console.log(value)
     if (value.todo !== '') {
       this.service.editTask(value);
       this.editTask = undefined
@@ -57,6 +58,7 @@ export class AppComponent {
   }
 
   deleteTaskInApp(value: any) {
+    console.log(value)
     this.service.deleteTask(value)
     this.inputValid = true;
     this.editTask = undefined
