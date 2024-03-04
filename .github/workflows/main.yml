@@ -9,5 +9,5 @@ jobs:
         uses: treosh/lighthouse-ci-action@v11
         with:
           urls: 'https://ang-todotask.netlify.app/'
-          serverBaseUrl: 'http://localhost:62433/'
+          serverBaseUrl: 'http://localhost:64399/'
           serverToken: 'b5c04920-edeb-423f-8ac5-5d03e435e0bf'
