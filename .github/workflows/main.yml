@@ -1,8 +1,9 @@
-name: Lighthouse
+name: Lighthouse CI for Netlify sites
 on: push
 jobs:
-  lighthouse:
+  build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
       - name: Set up Node.js
@@ -11,9 +12,16 @@ jobs:
           node-version: '14' # Choose the appropriate Node.js version
       - name: Install Angular CLI
         run: npm install -g @angular/cli
-      - name: Run Lighthouse on urls and upload data to private lhci server
+      - uses: actions/checkout@v4
+      - name: Wait for the Netlify Preview
+        uses: jakepartusch/wait-for-netlify-action@v1.4
+        id: netlify
+        with:
+          site_name: 'ang-todotask'
+      - name: Audit URLs using Lighthouse
         uses: treosh/lighthouse-ci-action@v11
         with:
-          urls: 'https://ang-todotask.netlify.app/'
+          urls: https://ang-todotask.netlify.app/
           serverBaseUrl: 'http://localhost:64399/'
           serverToken: 'fba0f17f-a347-46a5-87bd-1c01f492bb6e'
+          
