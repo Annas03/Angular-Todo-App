@@ -1,0 +1,13 @@
+name: Lighthouse
+on: push
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Lighthouse on urls and upload data to private lhci server
+        uses: treosh/lighthouse-ci-action@v11
+        with:
+          urls: 'https://ang-todotask.netlify.app/'
+          serverBaseUrl: 'http://localhost:62433/'
+          serverToken: 'b5c04920-edeb-423f-8ac5-5d03e435e0bf'
