@@ -3,7 +3,7 @@ module.exports = {
       collect: {
         startServerReadyPattern: 'Local', // This phrase prints out after preview server starts
         startServerCommand: 'npm run preview',
-        url: 'https://ang-todotask.netlify.app/',
+        url: 'https://ang-todotask.netlify.app',
         numberOfRuns: 1,
       },
       upload: {
