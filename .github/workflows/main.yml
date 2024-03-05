@@ -18,4 +18,4 @@ jobs:
         run: |
           npm install -g @lhci/cli
       - name: Starts Lighthouse CI Autorun
-        run: lhci autorun --upload.serverBaseURL=${{ secrets.LHCI_SERVER_BASE_URL }} --upload.token=${{ secrets.LHCI_SERVER_TOKEN }}
+        run: lhci autorun --upload.serverBaseURL=http://localhost:9001 --upload.token=859bb99f-85d0-44d0-9b89-a19b0f1fddcb
