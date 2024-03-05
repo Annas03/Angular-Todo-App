@@ -8,7 +8,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '18' # Choose the appropriate Node.js version
+          node-version: '14' # Choose the appropriate Node.js version
       - name: Install Angular CLI
         run: npm install -g @angular/cli
       - name: Run Lighthouse on urls and upload data to private lhci server
