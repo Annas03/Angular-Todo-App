@@ -8,8 +8,8 @@ module.exports = {
       },
       upload: {
         target: 'lhci',
-        serverBaseUrl: 'http://localhost:64399',
-        token: 'fba0f17f-a347-46a5-87bd-1c01f492bb6e', // build token from lhci wizard
+        serverBaseUrl: 'http://localhost:9001',
+        token: '859bb99f-85d0-44d0-9b89-a19b0f1fddcb', // build token from lhci wizard
       },
     },
   }; 
