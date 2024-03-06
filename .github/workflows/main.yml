@@ -1,23 +1,26 @@
-name: Lighthouse CI
+name: CI
 on: [push]
 jobs:
-  Audit:
+  lhci:
     name: Lighthouse
     runs-on: ubuntu-latest
-    env:
-      SERVER_BASE_URL: http://localhost:9001
     steps:
-      - uses: actions/checkout@v4
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v3
         with:
-          node-version: '18.16.x' # Choose the appropriate Node.js version
-      - name: Install Angular CLI
-        run: npm install -g @angular/cli
-      - name: Install Lighthouse CLI
+          node-version: 16.x
+      - name: npm install, build
         run: |
-          npm install -g @lhci/cli
-      - name: Starts Lighthouse CI Autorun
-        run: | 
-          lhci autorun --upload.serverBaseURL=http://localhost:9001 --upload.token=859bb99f-85d0-44d0-9b89-a19b0f1fddcb
+          npm install
           npm run preview
+      - name: Install and configure LHCI CLI
+        run: |
+          npm install -g @lhci/cli@0.13.x
+          # Configure LHCI server URL (replace with your actual URL)
+          echo "LHCI_SERVER_URL=http://localhost:52009" >> $GITHUB_ENV
+      - name: Run Lighthouse CI and upload report
+        run: |
+          lhci autorun --upload
+        env:
+          LHCI_SERVER_URL: ${{ env.LHCI_SERVER_URL }}
