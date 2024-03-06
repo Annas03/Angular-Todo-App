@@ -16,10 +16,7 @@ jobs:
       - name: Install and configure LHCI CLI
         run: |
           npm install -g @lhci/cli@0.13.x
-          # Configure LHCI server URL (replace with your actual URL)
-          echo "LHCI_SERVER_URL=http://localhost:52009" >> $GITHUB_ENV
       - name: Run Lighthouse CI and upload report
         run: |
-          lhci autorun --upload
-        env:
-          LHCI_SERVER_URL: ${{ env.LHCI_SERVER_URL }}
+          lhci autorun --upload.target=lhci --upload.token=859bb99f-85d0-44d0-9b89-a19b0f1fddcb --upload.serverBaseUrl=http://localhost:52009
+        
