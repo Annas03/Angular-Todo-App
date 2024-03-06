@@ -18,5 +18,5 @@ jobs:
           npm install -g @lhci/cli@0.13.x
       - name: Run Lighthouse CI and upload report
         run: |
-          lhci autorun --upload.target=lhci --upload.token=859bb99f-85d0-44d0-9b89-a19b0f1fddcb --upload.serverBaseUrl=http://localhost:52009
+          lhci autorun --upload.target=lhci --upload.serverBaseUrl=https://lighthouse-server-production-8084.up.railway.app/ --upload.token=0ac98669-2c1f-4b1d-99c2-4acd8f163e45
         
