@@ -13,7 +13,6 @@ jobs:
       - name: npm install, build
         run: |
           npm install
-          npm run preview
       - name: Install and configure LHCI CLI
         run: |
           npm install -g @lhci/cli@0.13.x
