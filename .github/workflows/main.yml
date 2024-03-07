@@ -24,6 +24,6 @@ jobs:
           npm install -g @lhci/cli@0.13.x
       - name: Run Lighthouse CI and upload report
         run: |
-          lhci autorun --url=http://localhost:4200 # Adjust the URL based on your server configuration
+          lhci autorun --url=http://localhost:4201 # Adjust the URL based on your server configuration
 
         
