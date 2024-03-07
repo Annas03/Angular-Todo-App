@@ -3,7 +3,7 @@ module.exports = {
       collect: {
         startServerReadyPattern: 'Local', // This phrase prints out after preview server starts
         startServerCommand: 'npm run preview',
-        url: 'http://localhost:4209',
+        url: 'http://localhost:4201',
         numberOfRuns: 1,
       },
       upload: {
