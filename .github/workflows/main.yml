@@ -13,10 +13,17 @@ jobs:
       - name: npm install, build
         run: |
           npm install
+          npm run build # Assuming your build script is defined in your package.json
+          npm install -g serve
+      - name: Serve the application
+        run: |
+          serve -s build & # Start the server in the background
+          sleep 3 # Wait for the server to start (adjust as needed)
       - name: Install and configure LHCI CLI
         run: |
           npm install -g @lhci/cli@0.13.x
       - name: Run Lighthouse CI and upload report
         run: |
-          lhci autorun --upload.target=lhci --upload.serverBaseUrl=https://lighthouse-server-production-8084.up.railway.app/ --upload.token=0ac98669-2c1f-4b1d-99c2-4acd8f163e45
+          lhci autorun --url=http://localhost:4200 # Adjust the URL based on your server configuration
+
         
