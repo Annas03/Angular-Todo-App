@@ -19,6 +19,6 @@ jobs:
           npm install -g @lhci/cli@0.13.x
       - name: Run Lighthouse CI and upload report
         run: |
-          lhci autorun
+          lhci autorun  --config=lighthouserc.cjs
 
         
