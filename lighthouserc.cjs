@@ -1,4 +1,4 @@
-import {environment} from './src/environments/environment'
+const { environment } = require('./src/environments/environment');
 module.exports = {
     ci: {
       collect: {
