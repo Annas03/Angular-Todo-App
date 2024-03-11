@@ -1,25 +1,27 @@
-name: Lighthouse CI for Netlify sites
-on: [pull_request]
+name: CI
+on: [push]
 jobs:
-  build:
+  lhci:
+    name: Lighthouse
     runs-on: ubuntu-latest
-
+    env:
+      AUDIT_URL: ${{ secrets.AUDIT_URL }}
+      LHCI_SERVER_BASE_URL: ${{ secrets.LHCI_SERVER_BASE_URL }}
+      LHCI_SERVER_TOKEN: ${{ secrets.LHCI_SERVER_TOKEN }}
     steps:
-      - uses: actions/checkout@v4
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v3
         with:
-          node-version: '14' # Choose the appropriate Node.js version
-      - name: Install Angular CLI
-        run: npm install -g @angular/cli
-      - name: Wait for the Netlify Preview
-        uses: jakepartusch/wait-for-netlify-action@v1.4
-        id: netlify
-        with:
-          site_name: 'ang-todotask'
-      - name: Audit URLs using Lighthouse
-        uses: treosh/lighthouse-ci-action@v11
-        with:
-          urls: 'https://ang-todotask.netlify.app/'
-          serverBaseUrl: ${{ secrets.LHCI_SERVER_BASE_URL }}
-          serverToken: ${{ secrets.LHCI_SERVER_TOKEN }}
+          node-version: 18.16.x
+      - name: npm install, build
+        run: |
+          npm install
+          npm run build # Assuming your build script is defined in your package.json
+          npm install -g serve
+      - name: Install and configure LHCI CLI
+        run: |
+          npm install -g @lhci/cli@0.13.x
+      - name: Run Lighthouse CI and upload report
+        run: |
+          lhci autorun

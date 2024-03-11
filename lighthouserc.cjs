@@ -3,13 +3,13 @@ module.exports = {
       collect: {
         startServerReadyPattern: 'Local', // This phrase prints out after preview server start
         startServerCommand: 'npm run preview',
-        url: 'https://ang-todotask.netlify.app',
+        url: process.env.AUDIT_URL,
         numberOfRuns: 1,
       },
       upload: {
         target: 'lhci',
-        serverBaseUrl: 'http://localhost:9001',
-        token: '859bb99f-85d0-44d0-9b89-a19b0f1fddcb', // build token from lhci wizard
+        serverBaseUrl: process.env.LHCI_SERVER_BASE_URL,
+        token: process.env.LHCI_SERVER_TOKEN, // build token from lhci wizard
       },
     },
   }; 
