@@ -3,13 +3,13 @@ module.exports = {
       collect: {
         startServerReadyPattern: 'Local', // This phrase prints out after preview server starts
         startServerCommand: 'npm run preview',
-        url: process.env.AUDIT_URL,
+        url: 'http://localhost:4200',
         numberOfRuns: 1,
       },
       upload: {
         target: 'lhci',
-        serverBaseUrl: process.env.LHCI_SERVER_URL,
-        token: process.env.LHCI_BUILD_TOKEN, // build token from lhci wizard
+        serverBaseUrl: 'https://lighthouse-server-production-8084.up.railway.app',
+        token: '0ac98669-2c1f-4b1d-99c2-4acd8f163e45', // build token from lhci wizard
       },
     },
   }; 
