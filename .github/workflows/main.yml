@@ -7,7 +7,7 @@ jobs:
     env:
       AUDIT_URL: ${{ secrets.AUDIT_URL }}
       LHCI_SERVER_URL: ${{ secrets.LHCI_SERVER_BASE_URL }}
-      LHCI_BUILD_TOKEN: ${{ secrets.LHCI_BUILD_TOKEN }}
+      LHCI_BUILD_TOKEN: ${{ secrets.LHCI_SERVER_TOKEN }}
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js 16.x
