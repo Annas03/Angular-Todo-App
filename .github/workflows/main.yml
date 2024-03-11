@@ -4,6 +4,10 @@ jobs:
   lhci:
     name: Lighthouse
     runs-on: ubuntu-latest
+    env:
+      AUDIT_URL: ${{ secrets.AUDIT_URL }}
+      LHCI_SERVER_URL: ${{ secrets.LHCI_SERVER_URL }}
+      LHCI_BUILD_TOKEN: ${{ secrets.LHCI_BUILD_TOKEN }}
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js 16.x
@@ -20,4 +24,4 @@ jobs:
           npm install -g @lhci/cli@0.13.x
       - name: Run Lighthouse CI and upload report
         run: |
-          lhci autorun --collect.startServerReadyPattern=local --collect.startServerCommand=npm run preview --collect.url=${{secrets.AUDIT_URL}} --collect.numberOfRuns=1 --upload.target=lhci --upload.serverBaseUrl=${{secrets.LHCI_SERVER_URL}} --upload.token=${{secrets.LHCI_BUILD_TOKEN}}
+          lhci autorun
