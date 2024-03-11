@@ -1,7 +1,7 @@
 module.exports = {
     ci: {
       collect: {
-        startServerReadyPattern: 'Local', // This phrase prints out after preview server starts
+        startServerReadyPattern: 'Local', // This phrase prints out after preview server start
         startServerCommand: 'npm run preview',
         url: process.env.AUDIT_URL,
         numberOfRuns: 1,
