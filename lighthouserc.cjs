@@ -1,15 +1,16 @@
+import {environment} from './src/environments/environment'
 module.exports = {
     ci: {
       collect: {
         startServerReadyPattern: 'Local', // This phrase prints out after preview server starts
         startServerCommand: 'npm run preview',
-        url: process.env.AUDIT_URL,
+        url: environment.auditURL,
         numberOfRuns: 1,
       },
       upload: {
         target: 'lhci',
-        serverBaseUrl: process.env.LHCI_SERVER_URL,
-        token: process.env.LHCI_BUILD_TOKEN, // build token from lhci wizard
+        serverBaseUrl: environment.lhciServerURL,
+        token: environment.lhciBuildToken, // build token from lhci wizard
       },
     },
   }; 
