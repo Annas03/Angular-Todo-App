@@ -14,11 +14,12 @@ jobs:
         run: |
           npm install
           npm run build # Assuming your build script is defined in your package.json
+          npm install -g serve
       - name: Install and configure LHCI CLI
         run: |
           npm install -g @lhci/cli@0.13.x
       - name: Run Lighthouse CI and upload report
         run: |
-          lhci autorun  --config=lighthouserc.cjs
+          lhci autorun
 
         
