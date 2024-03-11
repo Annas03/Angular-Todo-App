@@ -9,7 +9,7 @@ module.exports = {
       upload: {
         target: 'lhci',
         serverBaseUrl: process.env.LHCI_SERVER_BASE_URL,
-        token: process.evn.LHCI_BUILD_TOKEN, // build token from lhci wizard
+        token: process.evn.LHCI_SERVER_TOKEN, // build token from lhci wizard
       },
     },
   }; 
