@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       AUDIT_URL: ${{ secrets.AUDIT_URL }}
-      LHCI_SERVER_URL: ${{ secrets.LHCI_SERVER_URL }}
+      LHCI_SERVER_URL: ${{ secrets.LHCI_SERVER_BASE_URL }}
       LHCI_BUILD_TOKEN: ${{ secrets.LHCI_BUILD_TOKEN }}
     steps:
       - uses: actions/checkout@v3
