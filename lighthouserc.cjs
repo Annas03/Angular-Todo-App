@@ -5,6 +5,9 @@ module.exports = {
         startServerCommand: 'npm run preview',
         url: process.env.AUDIT_URL,
         numberOfRuns: 1,
+        settings: {
+          preset: 'desktop',
+        }
       },
       upload: {
         target: 'lhci',
