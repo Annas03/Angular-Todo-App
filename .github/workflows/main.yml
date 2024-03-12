@@ -21,7 +21,7 @@ jobs:
           npm install -g serve
       - name: Start local server
         run: |
-          serve -s build & # Start the local server in the background
+          npm run preview & # Start the local server in the background
           sleep 5 # Wait for server to start, adjust as needed
   
       - name: Install and configure LHCI CLI
