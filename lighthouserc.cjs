@@ -11,5 +11,10 @@ module.exports = {
         serverBaseUrl: process.env.LHCI_SERVER_BASE_URL,
         token: process.env.LHCI_SERVER_TOKEN, // build token from lhci wizard
       },
+      assert: {
+        assertion: {
+          "categories:seo" : ["error", {"minScore": 0.9}],
+        }
+      },
     },
   }; 
