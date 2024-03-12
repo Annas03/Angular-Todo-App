@@ -18,12 +18,6 @@ jobs:
         run: |
           npm install
           npm run build # Assuming your build script is defined in your package.json
-          npm install -g serve
-      - name: Start local server
-        run: |
-          serve -s dist & # Start the local server in the background
-          sleep 11 # Wait for server to start, adjust as needed
-  
       - name: Install and configure LHCI CLI
         run: |
           npm install -g @lhci/cli@0.13.x
