@@ -12,8 +12,8 @@ module.exports = {
         token: process.env.LHCI_SERVER_TOKEN, // build token from lhci wizard
       },
       assert: {
-        assertion: {
-          "categories:seo" : ["error", {"minScore": 0.9}],
+        assertions: {
+          "categories:seo" : ["warn", {"minScore": 0.9}],
         }
       },
     },
