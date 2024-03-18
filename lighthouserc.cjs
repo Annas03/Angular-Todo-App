@@ -9,7 +9,7 @@ module.exports = {
       },
       upload: {
         target: 'filesystem',
-        outputDir: '/dist/lhci'
+        outputDir: './dist/lhci'
       },
     },
   }; 
