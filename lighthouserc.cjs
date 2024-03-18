@@ -1,14 +1,14 @@
 module.exports = {
     ci: {
-      collect: {
-        startServerReadyPattern: 'Compiled successfully', // This phrase prints out after preview server starts
-        startServerCommand: 'npm run preview',
-        url: process.env.AUDIT_URL,
-        numberOfRuns: 5,
-        settings: {
-          preset: 'desktop',
-        }
-      },
+      // collect: {
+      //   startServerReadyPattern: 'Compiled successfully', // This phrase prints out after preview server starts
+      //   startServerCommand: 'npm run preview',
+      //   url: process.env.AUDIT_URL,
+      //   numberOfRuns: 5,
+      //   settings: {
+      //     preset: 'desktop',
+      //   }
+      // },
       // upload: {
       //   target: 'lhci',
       //   serverBaseUrl: process.env.LHCI_SERVER_BASE_URL,
