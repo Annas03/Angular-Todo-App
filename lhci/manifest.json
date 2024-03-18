@@ -2,8 +2,8 @@
     {
       "url": "https://www.example.com/page",
       "isRepresentativeRun": true,
-      "htmlPath": "/path/to/cwd/lhci/www_example_com-_page-2020_05_22_21_15_05.report.html",
-      "jsonPath": "/path/to/cwd/lhci/www_example_com-_page-2020_05_22_21_15_05.report.json",
+      "htmlPath": "/lhci/www_example_com-_page-2020_05_22_21_15_05.report.html",
+      "jsonPath": "/lhci/www_example_com-_page-2020_05_22_21_15_05.report.json",
       "summary": {"performance": 0.95, "seo": 0.9, "best-practices": 1}
     }
   ]
