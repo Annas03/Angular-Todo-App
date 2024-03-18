@@ -23,4 +23,4 @@ jobs:
           npm install -g @lhci/cli@0.13.x
       - name: Run Lighthouse CI and upload report
         run: |
-          lhci autorun --collect.staticDistDir=dist/todo-app --output=json [lighthouse.json]
+          lhci autorun
