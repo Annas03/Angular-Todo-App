@@ -10,15 +10,12 @@ module.exports = {
           preset: 'desktop',
         }
       },
-      settings: {
-      output: ["json"] // Include "json" in the output array
-  }
-      // upload: {
-      //   target: 'filesystem',
-      //   outputDir: 'lhreports'
-      //   // serverBaseUrl: process.env.LHCI_SERVER_BASE_URL,
-      //   // token: process.env.LHCI_SERVER_TOKEN, // build token from lhci wizard
-      // },
+      upload: {
+        target: 'filesystem',
+        outputDir: './lhci'
+        // serverBaseUrl: process.env.LHCI_SERVER_BASE_URL,
+        // token: process.env.LHCI_SERVER_TOKEN, // build token from lhci wizard
+      },
       // assert: {
       //   assertions: {
       //     "categories:seo" : ["warn", {"minScore": 0.85}],
