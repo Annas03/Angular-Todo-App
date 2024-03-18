@@ -10,7 +10,6 @@ module.exports = {
           preset: 'desktop',
         }
       },
-      extends: "lighthouse:default",
       settings: {
       output: ["json"] // Include "json" in the output array
   }
