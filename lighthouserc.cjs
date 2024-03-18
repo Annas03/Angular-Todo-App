@@ -11,9 +11,10 @@ module.exports = {
         }
       },
       upload: {
-        target: 'lhci',
-        serverBaseUrl: process.env.LHCI_SERVER_BASE_URL,
-        token: process.env.LHCI_SERVER_TOKEN, // build token from lhci wizard
+        target: 'filesystem',
+        outputDir: 'lhreports'
+        // serverBaseUrl: process.env.LHCI_SERVER_BASE_URL,
+        // token: process.env.LHCI_SERVER_TOKEN, // build token from lhci wizard
       },
       // assert: {
       //   assertions: {
