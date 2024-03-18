@@ -1,9 +1,6 @@
 module.exports = {
     ci: {
       collect: {
-        // startServerReadyPattern: 'Compiled successfully', // This phrase prints out after preview server starts
-        // startServerCommand: 'npm run preview',
-        // url: process.env.AUDIT_URL,
         staticDistDir: 'dist/todo-app',
         numberOfRuns: 3,
         settings: {
@@ -12,14 +9,7 @@ module.exports = {
       },
       upload: {
         target: 'filesystem',
-        outputDir: './lhci'
-        // serverBaseUrl: process.env.LHCI_SERVER_BASE_URL,
-        // token: process.env.LHCI_SERVER_TOKEN, // build token from lhci wizard
+        outputDir: '/lhci'
       },
-      // assert: {
-      //   assertions: {
-      //     "categories:seo" : ["warn", {"minScore": 0.85}],
-      //   }
-      // },
     },
   }; 
