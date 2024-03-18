@@ -9,15 +9,15 @@ module.exports = {
           preset: 'desktop',
         }
       },
-      upload: {
-        target: 'lhci',
-        serverBaseUrl: process.env.LHCI_SERVER_BASE_URL,
-        token: process.env.LHCI_SERVER_TOKEN, // build token from lhci wizard
-      },
-      assert: {
-        assertions: {
-          "categories:seo" : ["warn", {"minScore": 0.85}],
-        }
-      },
+      // upload: {
+      //   target: 'lhci',
+      //   serverBaseUrl: process.env.LHCI_SERVER_BASE_URL,
+      //   token: process.env.LHCI_SERVER_TOKEN, // build token from lhci wizard
+      // },
+      // assert: {
+      //   assertions: {
+      //     "categories:seo" : ["warn", {"minScore": 0.85}],
+      //   }
+      // },
     },
   }; 
