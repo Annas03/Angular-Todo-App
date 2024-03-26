@@ -33,7 +33,6 @@ jobs:
           lhci autorun
 
   lighthouse-report:  # Job for schedule events
-    if: github.event_name == 'schedule'
     runs-on: ubuntu-latest
     env:
       AUDIT_URL: ${{ secrets.AUDIT_PROD_URL }}
