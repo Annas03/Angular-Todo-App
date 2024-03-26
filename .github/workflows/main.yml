@@ -3,8 +3,8 @@ name: CI/Lighthouse Report
 on:
   push: # Runs on pushes to any branch
 
-  schedule:
-    - cron: '*/2 * * * *' # Runs every day at 00:
+  # schedule:
+  #   - cron: '*/2 * * * *' # Runs every day at 00:
 
 jobs:
   build-and-test:  # Job for push events
@@ -32,25 +32,25 @@ jobs:
         run: |
           lhci autorun
 
-  lighthouse-report:  # Job for schedule events
-    runs-on: ubuntu-latest
-    env:
-      AUDIT_URL: ${{ secrets.AUDIT_PROD_URL }}
-      LHCI_SERVER_BASE_URL: ${{ secrets.LHCI_SERVER_BASE_URL }}
-      LHCI_SERVER_TOKEN: ${{ secrets.LHCI_SERVER_TOKEN }}
-    steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js 16.x
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18.16.x
-      - name: npm install, build
-        run: |
-          npm install
-          npm run build # Assuming your build script is defined in your package.json
-      - name: Install and configure LHCI CLI
-        run: |
-          npm install -g @lhci/cli@0.13.x
-      - name: Run Lighthouse CI and upload report
-        run: |
-          lhci autorun
+  # lighthouse-report:  # Job for schedule events
+  #   runs-on: ubuntu-latest
+  #   env:
+  #     AUDIT_URL: ${{ secrets.AUDIT_PROD_URL }}
+  #     LHCI_SERVER_BASE_URL: ${{ secrets.LHCI_SERVER_BASE_URL }}
+  #     LHCI_SERVER_TOKEN: ${{ secrets.LHCI_SERVER_TOKEN }}
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - name: Use Node.js 16.x
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 18.16.x
+  #     - name: npm install, build
+  #       run: |
+  #         npm install
+  #         npm run build # Assuming your build script is defined in your package.json
+  #     - name: Install and configure LHCI CLI
+  #       run: |
+  #         npm install -g @lhci/cli@0.13.x
+  #     - name: Run Lighthouse CI and upload report
+  #       run: |
+  #         lhci autorun
