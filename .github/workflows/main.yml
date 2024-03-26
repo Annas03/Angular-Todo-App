@@ -44,6 +44,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18.16.x
+      - name: npm install, build
+        run: |
+          npm install
+          npm run build # Assuming your build script is defined in your package.json
       - name: Install and configure LHCI CLI
         run: |
           npm install -g @lhci/cli@0.13.x

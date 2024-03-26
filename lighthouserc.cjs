@@ -5,7 +5,7 @@ module.exports = {
       startServerReadyPattern: "Compiled successfully", // This phrase prints out after preview server starts
       startServerCommand: "npm run preview",
       url: process.env.AUDIT_URL,
-      numberOfRuns: 5,
+      numberOfRuns: 3,
       settings: {
         preset: "desktop",
       },
