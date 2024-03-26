@@ -36,6 +36,7 @@ module.exports = {
   },
 };
 
+
 // recipe 3: Generated LH report asserted
 // module.exports = {
 //   ci: {
