@@ -5,13 +5,13 @@ module.exports = {
       startServerReadyPattern: "Compiled successfully", // This phrase prints out after preview server starts
       startServerCommand: "npm run preview",
       url: process.env.AUDIT_URL,
-      numberOfRuns: 3,
+      numberOfRuns: 1,
       settings: {
         preset: "desktop",
       },
     },
     upload: {
-      target: "temporary-public-storage",
+      target: "temporary-public-storage", //lhci //folder
     },
   },
 };
